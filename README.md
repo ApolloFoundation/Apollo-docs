@@ -5,3 +5,4 @@ Apollo is being developed by the Apollo Foundation and supporting members of the
 
 This repository contains Apollo user and developer documentation
 
+Branch "develop" is for documentation for upcoming release
