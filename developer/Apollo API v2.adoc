@@ -285,14 +285,12 @@ No parameters
 | null 
 
 | code2FA 
-|  <<integer>> (int36)
+|  <<integer>> (int32)
 | -
 | X 
 | null 
 
-|===         
-
-
+|=== 
 
 
 ===== Return Type
@@ -1970,39 +1968,39 @@ The API returns Block information with transaction info depending on specified p
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | block 
+| <<integer>>
 | Block id (optional, default is last block)  
 | - 
 | null 
-|  
 
 | height 
+| <<integer>>
 | The block height (optional, default is last block).  
 | - 
 | -1 
-|  
 
 | timestamp 
+| <<integer>>
 | The earliest block (in seconds since the genesis block) to retrieve (optional).  
 | - 
 | -1 
-|  
 
 | includeTransactions 
+| <<boolean>>
 | Include transactions detail info  
 | - 
 | false 
-|  
 
 | includeExecutedPhased 
+| <<boolean>>
 | Include phased transactions detail info  
 | - 
 | false 
-|  
 
 |===         
 
@@ -2031,6 +2029,70 @@ The API returns Block information with transaction info depending on specified p
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "requestProcessingTime": 0,
+  "block": "string",
+  "height": 0,
+  "generator": "string",
+  "generatorRS": "string",
+  "generatorPublicKey": "string",
+  "timestamp": 0,
+  "timeout": 0,
+  "numberOfTransactions": 0,
+  "totalFeeATM": "string",
+  "payloadLength": 0,
+  "version": 0,
+  "baseTarget": "string",
+  "cumulativeDifficulty": "string",
+  "previousBlock": "string",
+  "nextBlock": "string",
+  "payloadHash": "string",
+  "generationSignature": "string",
+  "previousBlockHash": "string",
+  "blockSignature": "string",
+  "totalAmountATM": "string",
+  "transactions": [
+    {
+      "requestProcessingTime": 0,
+      "type": "string",
+      "subtype": "string",
+      "phased": true,
+      "timestamp": 0,
+      "deadline": 0,
+      "senderPublicKey": "string",
+      "recipient": "string",
+      "recipientRS": "string",
+      "amountATM": "string",
+      "feeATM": "string",
+      "referencedTransactionFullHash": "string",
+      "signature": "string",
+      "signatureHash": "string",
+      "fullHash": "string",
+      "transaction": "string",
+      "attachment": {
+        "additionalProp1": {},
+        "additionalProp2": {},
+        "additionalProp3": {}
+      },
+      "sender": "string",
+      "senderRS": "string",
+      "height": 0,
+      "version": "string",
+      "ecBlockId": "string",
+      "ecBlockHeight": 0,
+      "block": "string",
+      "confirmations": 0,
+      "blockTimestamp": 0,
+      "transactionIndex": 0
+    }
+  ],
+  "executedPhasedTransactions": [
+    {}
+  ]
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/block/GET/http-request.adoc[opts=optional]
@@ -2076,15 +2138,15 @@ The API returns Block ID only by specified height
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | height 
+| <<integer>>
 | The block height, mandatory  
 | X 
 | null 
-|  
 
 |===         
 
@@ -2113,6 +2175,70 @@ The API returns Block ID only by specified height
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "requestProcessingTime": 0,
+  "block": "string",
+  "height": 0,
+  "generator": "string",
+  "generatorRS": "string",
+  "generatorPublicKey": "string",
+  "timestamp": 0,
+  "timeout": 0,
+  "numberOfTransactions": 0,
+  "totalFeeATM": "string",
+  "payloadLength": 0,
+  "version": 0,
+  "baseTarget": "string",
+  "cumulativeDifficulty": "string",
+  "previousBlock": "string",
+  "nextBlock": "string",
+  "payloadHash": "string",
+  "generationSignature": "string",
+  "previousBlockHash": "string",
+  "blockSignature": "string",
+  "totalAmountATM": "string",
+  "transactions": [
+    {
+      "requestProcessingTime": 0,
+      "type": "string",
+      "subtype": "string",
+      "phased": true,
+      "timestamp": 0,
+      "deadline": 0,
+      "senderPublicKey": "string",
+      "recipient": "string",
+      "recipientRS": "string",
+      "amountATM": "string",
+      "feeATM": "string",
+      "referencedTransactionFullHash": "string",
+      "signature": "string",
+      "signatureHash": "string",
+      "fullHash": "string",
+      "transaction": "string",
+      "attachment": {
+        "additionalProp1": {},
+        "additionalProp2": {},
+        "additionalProp3": {}
+      },
+      "sender": "string",
+      "senderRS": "string",
+      "height": 0,
+      "version": "string",
+      "ecBlockId": "string",
+      "ecBlockHeight": 0,
+      "block": "string",
+      "confirmations": 0,
+      "blockTimestamp": 0,
+      "transactionIndex": 0
+    }
+  ],
+  "executedPhasedTransactions": [
+    {}
+  ]
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/block/id/GET/http-request.adoc[opts=optional]
@@ -2158,39 +2284,39 @@ The API returns List of Block information with transaction info depending on spe
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | firstIndex 
+| <<integer>>
 | A zero-based index to the &#39;first height&#39; to retrieve (optional).  
 | - 
 | 0 
-|  
 
 | lastIndex 
+| <<integer>>
 | A zero-based index to the &#39;last height&#39; to retrieve (optional).  
 | - 
 | -1 
-|  
 
 | timestamp 
+| <<integer>>
 | The earliest block (in seconds since the genesis block) to retrieve (optional).  
 | - 
 | -1 
-|  
 
 | includeTransactions 
+| <<boolean>>
 | Include transactions detail info  
 | - 
 | false 
-|  
 
 | includeExecutedPhased 
+| <<boolean>>
 | Include phased transactions detail info  
 | - 
 | false 
-|  
 
 |===         
 
@@ -2219,6 +2345,80 @@ The API returns List of Block information with transaction info depending on spe
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "Protocol version": "string",
+  "newErrorCode": 0,
+  "requestProcessingTime": 0,
+  "errorDescription": "string",
+  "errorCode": 0,
+  "errorDetails": "string",
+  "blocks": [
+    {
+      "requestProcessingTime": 0,
+      "block": "string",
+      "height": 0,
+      "generator": "string",
+      "generatorRS": "string",
+      "generatorPublicKey": "string",
+      "timestamp": 0,
+      "timeout": 0,
+      "numberOfTransactions": 0,
+      "totalFeeATM": "string",
+      "payloadLength": 0,
+      "version": 0,
+      "baseTarget": "string",
+      "cumulativeDifficulty": "string",
+      "previousBlock": "string",
+      "nextBlock": "string",
+      "payloadHash": "string",
+      "generationSignature": "string",
+      "previousBlockHash": "string",
+      "blockSignature": "string",
+      "totalAmountATM": "string",
+      "transactions": [
+        {
+          "requestProcessingTime": 0,
+          "type": "string",
+          "subtype": "string",
+          "phased": true,
+          "timestamp": 0,
+          "deadline": 0,
+          "senderPublicKey": "string",
+          "recipient": "string",
+          "recipientRS": "string",
+          "amountATM": "string",
+          "feeATM": "string",
+          "referencedTransactionFullHash": "string",
+          "signature": "string",
+          "signatureHash": "string",
+          "fullHash": "string",
+          "transaction": "string",
+          "attachment": {
+            "additionalProp1": {},
+            "additionalProp2": {},
+            "additionalProp3": {}
+          },
+          "sender": "string",
+          "senderRS": "string",
+          "height": 0,
+          "version": "string",
+          "ecBlockId": "string",
+          "ecBlockHeight": 0,
+          "block": "string",
+          "confirmations": 0,
+          "blockTimestamp": 0,
+          "transactionIndex": 0
+        }
+      ],
+      "executedPhasedTransactions": [
+        {}
+      ]
+    }
+  ]
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/block/list/GET/http-request.adoc[opts=optional]
@@ -2264,15 +2464,15 @@ The API returns ECBlockDTO by specified timestamp
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | timestamp 
+| <<integer>>
 | The earliest block (in seconds since the genesis block) to retrieve (optional).  
 | - 
 | -1 
-|  
 
 |===         
 
@@ -2301,6 +2501,17 @@ The API returns ECBlockDTO by specified timestamp
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "requestProcessingTime": 0,
+  "id": 0,
+  "ecBlockId": "string",
+  "height": 0,
+  "ecBlockHeight": 0,
+  "timestamp": 0
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/block/ec/GET/http-request.adoc[opts=optional]
@@ -2346,34 +2557,34 @@ Starts file download from peers
 
 ====== Path Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | id 
-|   
+| <<string>>
+| -  
 | X 
 | null 
-|  
 
 |===         
-
 
 
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
-| password 
-|   
+| password
+| <<string>>
+| - 
 | - 
 | null 
-|  
 
 |===         
+
 
 
 ===== Return Type
@@ -2400,6 +2611,37 @@ Starts file download from peers
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "errorCode": 0,
+  "protocol": 0,
+  "error": "string",
+  "cause": "string",
+  "downloadInfo": {
+    "fileInfo": {
+      "fileId": "string",
+      "isPresent": true,
+      "fileDate": "2020-05-06T09:30:50.610Z",
+      "hash": "string",
+      "size": 0,
+      "chunkSize": 0,
+      "originHostSignature": "string",
+      "present": true
+    },
+    "chunks": [
+      {
+        "fileId": "string",
+        "chunkId": 0,
+        "offset": 0,
+        "size": 0,
+        "present": "NOT_PRESENT",
+        "crc": 0
+      }
+    ]
+  }
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/debug/downloadstart/$\{id\}/GET/http-request.adoc[opts=optional]
@@ -2449,27 +2691,27 @@ endif::internal-generation[]
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
-| ip 
-|   
+| ip
+| <<string>>
+| -  
 | X 
 | null 
-|  
 
 | port 
+| <<integer>>
 |   
 | - 
 | null 
-|  
 
 | schema 
+| <<string>>
 |   
 | - 
 | null 
-|  
 
 |===         
 
@@ -2540,15 +2782,15 @@ endif::internal-generation[]
 
 ====== Path Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | job-id 
+| <<string>>
 |   
 | X 
 | null 
-|  
 
 |===         
 
@@ -2557,15 +2799,15 @@ endif::internal-generation[]
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | wait 
+| <<integer>>
 |   
 | - 
 | -1 
-|  
 
 |===         
 
@@ -2633,12 +2875,7 @@ endif::internal-generation[]
 
 
 ===== Parameters
-
-
-
-
-
-
+No parameters
 
 ===== Return Type
 
@@ -2708,20 +2945,15 @@ endif::internal-generation[]
 
 [cols="2,3,1,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | ip 
-|   
+| <<string>>
+| -  
 | X 
 | null 
-|  
 
 |===         
-
-
-
-
-
 
 ===== Return Type
 
@@ -2786,11 +3018,7 @@ endif::internal-generation[]
 
 
 ===== Parameters
-
-
-
-
-
+No parameters
 
 
 ===== Return Type
@@ -2859,15 +3087,15 @@ endif::internal-generation[]
 
 ====== Path Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | job-id 
+| <<string>>
 |   
 | X 
 | null 
-|  
 
 |===         
 
@@ -2876,15 +3104,15 @@ endif::internal-generation[]
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
-| wait 
-|   
+| wait
+| <<integer>>
+| - 
 | - 
 | -1 
-|  
 
 |===         
 
@@ -2955,26 +3183,20 @@ endif::internal-generation[]
 
 ====== Path Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | job-id 
-|   
+| <<string>>
+| -  
 | X 
 | null 
-|  
 
 |===         
-
-
-
-
 
 
 ===== Return Type
-
-
 
 -
 
@@ -3039,29 +3261,25 @@ Cancel Order By Id
 
 
 ===== Parameters
-
+No parameters
 
 ===== Body Parameter
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | body 
-| Order id <<string>> 
+| <<string>>
+| Order id 
 | - 
-|  
-|  
+| - 
 
 |===         
-
-
 
 
 
 ===== Return Type
-
-
 
 -
 
@@ -3111,7 +3329,7 @@ Create order
 
 ===== Description 
 
-get trading history for certain account
+Get trading history for certain account
 
 
 // markup not found, no include::{specDir}rest/dex/offer/POST/spec.adoc[opts=optional]
@@ -3119,18 +3337,18 @@ get trading history for certain account
 
 
 ===== Parameters
-
+No parameters
 
 ===== Body Parameter
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | body 
-| Type of the APL offer. (BUY APL / SELL APL) 0/1 <<ByteArray>> 
+| <<ByteArray>>
+| Type of the APL offer. (BUY APL / SELL APL) 0/1  
 | X 
-|  
 |  
 
 |===         
@@ -3191,18 +3409,14 @@ Eth gas info
 
 ===== Description 
 
-get gas prices for different tx speed.
+Get gas prices for different tx speed.
 
 
 // markup not found, no include::{specDir}rest/dex/ethInfo/GET/spec.adoc[opts=optional]
 
 
-
 ===== Parameters
-
-
-
-
+No parameters
 
 
 
@@ -3266,29 +3480,23 @@ dexWidthraw endpoint provides transferEth of Ethereum/Pax
 
 
 ===== Parameters
-
+No parameters
 
 ===== Body Parameter
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | body 
-| amount eth for withdraw <<number>> 
+| <<number>>
+| amount eth for withdraw  
 | X 
-|  
 |  
 
 |===         
 
-
-
-
-
 ===== Return Type
-
-
 
 -
 
@@ -3338,30 +3546,25 @@ Flush temporary keys
 
 ===== Description 
 
-cleanup after the exchange routine
+Cleanup after the exchange routine
 
 
 // markup not found, no include::{specDir}rest/dex/flush/GET/spec.adoc[opts=optional]
 
 
-
 ===== Parameters
-
-
-
-
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | accountid 
+| <<string>>
 | User account id.  
 | - 
 | null 
-|  
 
 |===         
 
@@ -3426,56 +3629,56 @@ Will send ETH transaction to create ETH or PAX deposit. For ERC20 will increase 
 
 
 ===== Parameters
+No parameters
 
 
+===== Request body
 
-===== Form Parameter
-
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | sender 
 |  <<string>> 
+| -
 | X 
 | null 
-|  
 
 | passphrase 
 |  <<string>> 
+| -
 | X 
 | null 
-|  
 
 | code2FA 
-|  <<integer>> 
+|  <<integer>> (int32)
 | - 
-| 0 
-|  
+| - 
+| 0
 
 | orderId 
 |  <<string>> 
+| -
 | X 
 | null 
-|  
 
 | amount 
-|  <<long>> 
+|  <<long>> (int64)
 | - 
-| null 
-|  
+| -
+| null  
 
 | walletAddress 
 |  <<string>> 
 | - 
+| -
 | null 
-|  
 
 | pairCurrency 
 |  <<string>> 
-| - 
+| -
+| -
 | null 
-|  
 
 |===         
 
@@ -3506,6 +3709,12 @@ Will send ETH transaction to create ETH or PAX deposit. For ERC20 will increase 
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "transactionHash": "string"
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/dex/eth-deposits/POST/http-request.adoc[opts=optional]
@@ -3544,16 +3753,9 @@ Get all user addresses on the smart contract.
 
 
 ===== Parameters
-
-
-
-
-
-
+No parameters
 
 ===== Return Type
-
-
 
 -
 
@@ -3614,12 +3816,7 @@ Get all users active deposits on the smart contract.
 
 
 ===== Parameters
-
-
-
-
-
-
+No parameters
 
 ===== Return Type
 
@@ -3684,11 +3881,7 @@ Get all users expired swaps on the smart contract.
 
 
 ===== Parameters
-
-
-
-
-
+No parameters
 
 
 ===== Return Type
@@ -3754,12 +3947,7 @@ Get all users filled orders on the smart contract.
 
 
 ===== Parameters
-
-
-
-
-
-
+No parameters
 
 ===== Return Type
 
@@ -3831,21 +4019,21 @@ Get all versions of dex contracts related to the specified order (including all 
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | accountId 
+| <<string>>
 | APL account id (RS, singed or unsigned int64/long)   
 | - 
 | null 
-|  
 
 | orderId 
+| <<string>>
 | Order id (signed/unsigned int64/long)   
 | - 
 | null 
-|  
 
 |===         
 
@@ -3874,6 +4062,23 @@ Get all versions of dex contracts related to the specified order (including all 
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "id": "string",
+  "orderId": "string",
+  "counterOrderId": "string",
+  "sender": "string",
+  "recipient": "string",
+  "contractStatus": "string",
+  "secretHash": "string",
+  "transferTxId": "string",
+  "counterTransferTxId": "string",
+  "encryptedSecret": "string",
+  "deadlineToReply": 0,
+  "height": 0
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/dex/all-contracts/GET/http-request.adoc[opts=optional]
@@ -3914,27 +4119,22 @@ dexGetBalances endpoint returns cryptocurrency wallets' (ETH/PAX) balances
 ===== Parameters
 
 
-
-
-
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | eth 
-| Addresses to get balance <<String>> 
+| <<String>>
+| Addresses to get balance  
 | X 
 | null 
-|  
 
 |===         
 
 
 ===== Return Type
-
-
 
 -
 
@@ -3993,39 +4193,35 @@ Retrieve candlesticks using buy orders history and stored candlesticks for speci
 
 ===== Parameters
 
-
-
-
-
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | symbol 
+| <<string>>
 | Second currency symbol in the trading pair, for example - ETH, PAX OR entire currency pair, for example APL_ETH or APL/ETH (second symbol will be resolved as paired currency)  
 | X 
 | null 
-|  
 
 | to 
+| <<integer>>
 | Upper timestamp bound for candlesticks  
 | X 
 | null 
-|  
 
 | from 
+| <<integer>>
 | Lower timestamp bound for candlesticks  
 | X 
 | null 
-|  
 
 | resolution 
+| <<string>>
 | Time frame for which trading candlesticks should be returned. Possible values: QUARTER, HOUR, FOUR_HOURS, DAY or tv compatible 15, 60, 240, D   
 | X 
 | null 
-|  
 
 |===         
 
@@ -4054,6 +4250,31 @@ Retrieve candlesticks using buy orders history and stored candlesticks for speci
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "t": [
+    0
+  ],
+  "l": [
+    0
+  ],
+  "h": [
+    0
+  ],
+  "o": [
+    0
+  ],
+  "c": [
+    0
+  ],
+  "v": [
+    0
+  ],
+  "s": "string",
+  "nextTime": 0
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/dex/chart/GET/http-request.adoc[opts=optional]
@@ -4084,7 +4305,7 @@ Get configuration
 
 ===== Description 
 
-getting TV configuration
+Getting TV configuration
 
 
 // markup not found, no include::{specDir}rest/dex/config/GET/spec.adoc[opts=optional]
@@ -4092,11 +4313,7 @@ getting TV configuration
 
 
 ===== Parameters
-
-
-
-
-
+No parameters
 
 
 ===== Return Type
@@ -4166,21 +4383,21 @@ Lookup the database to get dex contracts associated with specified account and o
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | accountId 
+| <<string>>
 | APL account id (RS, singed or unsigned int64/long)   
 | - 
 | null 
-|  
 
 | orderId 
+| <<string>>
 | Order id (signed/unsigned int64/long)   
 | - 
 | null 
-|  
 
 |===         
 
@@ -4209,6 +4426,23 @@ Lookup the database to get dex contracts associated with specified account and o
 |===         
 
 ===== Samples
+[source,]
+----
+{
+  "id": "string",
+  "orderId": "string",
+  "counterOrderId": "string",
+  "sender": "string",
+  "recipient": "string",
+  "contractStatus": "string",
+  "secretHash": "string",
+  "transferTxId": "string",
+  "counterTransferTxId": "string",
+  "encryptedSecret": "string",
+  "deadlineToReply": 0,
+  "height": 0
+}
+----
 
 
 // markup not found, no include::{snippetDir}rest/dex/contracts/GET/http-request.adoc[opts=optional]
@@ -4239,7 +4473,7 @@ Get history
 
 ===== Description 
 
-getting history
+Getting history
 
 
 // markup not found, no include::{specDir}rest/dex/history/GET/spec.adoc[opts=optional]
@@ -4254,33 +4488,33 @@ getting history
 
 ====== Query Parameters
 
-[cols="2,3,1,1,1"]
+[cols="2,1,3,1,1"]
 |===         
-|Name| Description| Required| Default| Pattern
+|Name| Type| Description| Required| Default
 
 | symbol 
+| <<string>>
 | Cryptocurrency identifier  
 | - 
 | null 
-|  
 
 | resolution 
-| resolution  
+| <<string>>
+| -  
 | - 
 | null 
-|  
 
 | from 
-| from  
+| <<integer>>
+| - 
 | - 
 | null 
-|  
 
-| to 
-| to  
+| to
+| <<integer>>
+| -  
 | - 
 | null 
-|  
 
 |===         
 
